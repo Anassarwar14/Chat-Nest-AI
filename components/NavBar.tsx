@@ -18,7 +18,7 @@ const NavBar = () => {
             <Link href="/" className='mr-auto flex items-center gap-3'>
                 {/* <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tree-pine"><path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/></svg> */}
                 {/* <RiTreeFill className='w-7 h-7 text-amber-500' /> */}
-                <PiTreeFill className=' w-7 h-7 md:w-9 md:h-9 text-amber-500 ' />
+                <PiTreeFill className=' w-7 h-7 md:w-9 md:h-9 text-emerald-500 ' />
                 <h1 className='hidden md:block text-xl md:text-2xl font-bold text-primary'><span className='p-[0.34rem] text-white dark:text-black dark:bg-white bg-black text-clip '>Chat</span><span className='ml-1'>Nest</span> AI</h1>
             </Link>
             <section className='max-w-80 flex items-center gap-5 p-3 text-sm'>

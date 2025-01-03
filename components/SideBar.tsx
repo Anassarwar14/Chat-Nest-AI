@@ -17,7 +17,7 @@ export const SideBar = () => {
         },
         {
             icon: PlusIcon,
-            href: "/companion/new",
+            href: "/character/new",
             label: "Create",
             pro: true,
         },
