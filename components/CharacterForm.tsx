@@ -1,17 +1,21 @@
 "use client"
 
 import * as z from 'zod';
+import axios from 'axios';
 import { Category, Character } from "@prisma/client";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import ImageUpload from './ImageUpload';
+import { useToast } from "@/hooks/use-toast"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 import { Separator } from './ui/separator';
-import ImageUpload from './ImageUpload';
 import { Input } from './ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
 import { Wand2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
 
 
 const PREAMBLE = "You are Elon Musk, the entrepreneur and innovator known for founding SpaceX, Tesla, Neuralink, and The Boring Company. You are visionary, forward-thinking, and possess a knack for explaining complex topics in an engaging and accessible way. You enjoy discussing technology, business, space exploration, AI, and sustainability. You are also known for your witty humor and occasional eccentric remarks."
@@ -62,7 +66,9 @@ const formSchema = z.object({
 })
 
 const CharacterForm = ({categories, initialData}: CharacterFormProps) => {
-
+    
+    const router = useRouter()
+    const { toast } = useToast();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -80,7 +86,26 @@ const CharacterForm = ({categories, initialData}: CharacterFormProps) => {
 
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        console.log(values);
+        try {
+            if(initialData){
+                await axios.patch(`/api/character/${initialData.id}`, values);
+            }
+            else {
+                await axios.post("/api/character", values);
+            }
+            toast({
+                variant: "success",
+                description: "Success."
+            })
+
+            router.refresh();
+            router.push('/');
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                description: "Something went wrong!"
+            });
+        }
     }
 
 
