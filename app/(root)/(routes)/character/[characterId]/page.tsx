@@ -4,19 +4,20 @@ import { RedirectToSignIn } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 
 interface CharacterIdPageProps {
-    params: {
+    params: Promise<{
         characterId: string;
-    };
+    }>;
 };
 
-const CharacterPage = async ({ params }: CharacterIdPageProps) => {
+const CharacterPage = async (props: CharacterIdPageProps) => {
+  const params = await props.params;
 
   const { userId } = await auth();
-  
+
   if(!userId){
     return RedirectToSignIn({redirectUrl: "/sign-in"});
   }
-  
+
   const character = await prismadb.character.findUnique({
       where: {
         userId,

@@ -25,7 +25,11 @@ const ChatClient = ({ character }: ChatClientProps) => {
 
   const { input, isLoading, handleInputChange, handleSubmit, setInput } = useCompletion({
     api: `/api/chat/${character.id}`,
+    onResponse: (response) => {
+      console.log("C2", response); // Inspect the response
+    },  
     onFinish(prompt, completion){
+      console.log("onFinishContent: ", completion);
       const systemMessage: ChatMessageProps = {
         role: "system",
         content: completion,

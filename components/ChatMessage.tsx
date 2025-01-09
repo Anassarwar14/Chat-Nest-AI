@@ -39,7 +39,7 @@ const ChatMessage = ({ role, content, isLoading, src }: ChatMessageProps) => {
             role === "user" && " justify-end")}
     >
         {role !== "user" && src && <BotAvatar src={src} /> }
-        <div className={cn("rounded-full shadow-md px-4 py-2 max-w-sm text-sm bg-primary/10", role === "system" ? "rounded-tl-none" : "text-white rounded-tr-none bg-gradient-to-r from-violet-600/60 via-blue-600/70 to-emerald-300")}>
+        <div className={cn("rounded-full shadow-md px-4 py-2 max-w-2xl  text-sm bg-primary/10", role === "system" ? "rounded-tl-none" : "text-white rounded-tr-none bg-gradient-to-r from-violet-600/60 via-blue-600/70 to-emerald-300")}>
             {isLoading ? <BeatLoader size="5" color={theme === "light" ? "black" : "white"}/> :
                 content
             }

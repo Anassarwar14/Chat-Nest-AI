@@ -6,17 +6,18 @@ import { auth } from "@clerk/nextjs/server";
 
 
 interface ChatIdProps {
-    params: {
+    params: Promise<{
         chatId: string;
-    }
+    }>
 }
 
-const ChatIdPage = async ({ params }: ChatIdProps) => {
+const ChatIdPage = async (props: ChatIdProps) => {
+    const params = await props.params;
     const { userId } = await auth();
 
     if(!userId){
         return RedirectToSignIn({ redirectUrl: '/sign-in' });
-    } 
+    }
 
     const character = await prismadb.character.findUnique({
         where: {
@@ -41,9 +42,9 @@ const ChatIdPage = async ({ params }: ChatIdProps) => {
 
     if(!character) return redirect('/')
 
-  return (
-        <ChatClient character={character}  />
-  )
+    return (
+          <ChatClient character={character}  />
+    )
 }
 
 export default ChatIdPage

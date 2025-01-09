@@ -2,7 +2,8 @@ import prismadb from "@/lib/prismaDB";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-export async function PATCH(req: Request, { params }: { params: { characterId: string } }) {
+export async function PATCH(req: Request, props: { params: Promise<{ characterId: string }> }) {
+    const params = await props.params;
     try {
         const body = await req.json();
         const user = await currentUser();
@@ -46,7 +47,8 @@ export async function PATCH(req: Request, { params }: { params: { characterId: s
 }
 
 
-export async function DELETE(req: Request, { params }: { params: { characterId: string } }){
+export async function DELETE(req: Request, props: { params: Promise<{ characterId: string }> }) {
+    const params = await props.params;
     try {
         const { userId } = await auth();
         if(!userId) {
