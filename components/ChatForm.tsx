@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent } from "react";
 import { ChatRequestOptions } from "ai";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { Send } from "lucide-react";
+import { MessageSquareQuote, Quote, Send } from "lucide-react";
 
 interface ChatFormProps {
     isLoading: boolean;
@@ -27,10 +27,10 @@ const ChatForm = ({
             value={input}
             onChange={handleInputChange}
             placeholder="Type a message.."
-            className="bg-primary/20 rounded-3xl"
+            className="bg-primary/10 rounded-3xl focus-visible:ring-0 focus:border focus:border-emerald-500 transition ease-in"
         />
-        <Button className="rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300/80">
-            <Send className="text-white"/>
+        <Button disabled={isLoading} className="rounded-full text-white bg-gradient-to-r from-emerald-500 to-emerald-300/80">
+            {!isLoading ? <Send /> : <Quote/>}
         </Button>
     </form>
   )

@@ -2,7 +2,10 @@ import { currentUser } from "@clerk/nextjs/server";
 import { ConsoleCallbackHandler } from "langchain/callbacks";
 import { Replicate } from "@langchain/community/llms/replicate";
 import { NextResponse } from "next/server";
-import { LangChainAdapter } from "ai"
+import { generateText, LangChainAdapter, streamText } from "ai"
+
+import { createOpenAI as createGroq, openai } from "@ai-sdk/openai";
+
 
 import { MemoryManager } from "@/lib/memory";
 import { rateLimit } from "@/lib/rate-limit";
@@ -49,7 +52,7 @@ export async function POST(request: Request, props: { params: Promise<{ chatId: 
 
         const characterKey = {
             characterName: character.name,
-            modelName: "llama2-13b",
+            modelName: "llama-3.1-70b-versatile",
             userId: user.id, 
         } 
 
@@ -69,40 +72,37 @@ export async function POST(request: Request, props: { params: Promise<{ chatId: 
         let relevantHistory = "";
         if(!!similarDocs && similarDocs.length !== 0) {
             relevantHistory = similarDocs.map((doc) => doc.pageContent).join("\n");
-        }
-
-        const model = new Replicate({
-            model: "a16z-infra/llama-2-13b-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5",
-            input: {
-                max_length: 512,
-            },
-            apiKey: process.env.REPLICATE_API_TOKEN,
-            callbacks: [new ConsoleCallbackHandler()],
+        }        
+    
+        const groq = createGroq({
+            baseURL: "https://api.groq.com/openai/v1/",
+            apiKey: process.env.GROQ_API_KEY!,
         })
-        model.verbose = true;
 
-        
-        const resp = String(
-            await model.invoke(
-                `
-                    ONLY generate plain sentences without prefix of who is speaking. DO NOT use ${character.name}: prefix.
-                    DO NOT take line breaks/gaps in the response.
+        const { text } = await generateText({
+            model: groq('llama-3.1-70b-versatile'),
+            prompt: 
+            `
+                ONLY generate plain sentences without prefix of who is speaking. DO NOT use ${character.name}: prefix.
+                DO NOT take line breaks/gaps in the response.
+                Avoid overly long or short answers. DONT USE more than 150 words.
+                Short answers are prefered mostly.
+                
+                ${character.instructions}
+                    
+                Below are relevant details about ${character.name}'s past and the conversation you are in.
+                ${relevantHistory}
+                
+                ${recentChatHistory}\n${character.name};
+            `,
+        })
 
-                    ${character.instructions}
-                    
-                    Below are relevant details about ${character.name}'s past and the conversation you are in.
-                    ${relevantHistory}
-                    
-                    ${recentChatHistory}\n${character.name};
-                    `
-                ).catch(console.error)
-            )
-            
+        const resp = text;
+
         const cleaned = resp.replaceAll("," , "");
         const chunks = cleaned.split("\n");
         const response = chunks[0];
-
-        await memoryManager.writeToHistory("" + response.trim(), characterKey);
+    
         var Readable = require("stream").Readable;
 
         let s = new Readable();

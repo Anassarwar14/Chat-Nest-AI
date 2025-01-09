@@ -1,5 +1,6 @@
 import { Redis } from "@upstash/redis";
 import { OpenAIEmbeddings } from "@langchain/openai";
+import { CohereEmbeddings } from "@langchain/cohere";
 import { Pinecone as PineconeClient } from '@pinecone-database/pinecone';
 import { PineconeStore } from "@langchain/pinecone";
 
@@ -24,7 +25,7 @@ export class MemoryManager {
         const pineconeIndex = pineconeClient.Index(process.env.PINECONE_INDEX!);
 
         const vectorStore = await PineconeStore.fromExistingIndex(
-            new OpenAIEmbeddings({openAIApiKey: process.env.OPENAI_API_KEY!}),
+            new CohereEmbeddings({apiKey: process.env.COHERE_API_KEY!, model: "embed-english-v3.0"}),
             { pineconeIndex }
         );
 

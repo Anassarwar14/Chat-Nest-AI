@@ -38,11 +38,13 @@ const ChatMessage = ({ role, content, isLoading, src }: ChatMessageProps) => {
     <div className={cn("group flex items-center gap-x-3 py-4 w-full", 
             role === "user" && " justify-end")}
     >
-        {role !== "user" && src && <BotAvatar src={src} /> }
-        <div className={cn("rounded-full shadow-md px-4 py-2 max-w-2xl  text-sm bg-primary/10", role === "system" ? "rounded-tl-none" : "text-white rounded-tr-none bg-gradient-to-r from-violet-600/60 via-blue-600/70 to-emerald-300")}>
-            {isLoading ? <BeatLoader size="5" color={theme === "light" ? "black" : "white"}/> :
-                content
-            }
+        <div className="flex items-start gap-x-3">
+            {role !== "user" && src && <BotAvatar src={src} /> }
+            <div className={cn("rounded-full shadow-md px-4 py-2 leading-8 max-w-2xl text-sm bg-primary/10", role === "system" ? "rounded-2xl rounded-tl-none" : "text-white rounded-tr-none bg-gradient-to-r from-violet-600/60 via-blue-600/70 to-emerald-300")}>
+                {isLoading ? <BeatLoader size="5" color={theme === "light" ? "black" : "white"}/> :
+                    content
+                }
+            </div>
         </div>
         {role === "user" && <UserAvatar/>}
         {role !== "user" && !isLoading && (

@@ -47,7 +47,7 @@ const ChatMessages = ({isLoading, messages = [], character}: ChatMessagesProps) 
                 key={message.content + "" + index} 
                 role={message.role}
                 content={message.content}
-                src={message.src}
+                src={character.src}
             />
         ))}
         {isLoading && (
