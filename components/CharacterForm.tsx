@@ -238,7 +238,7 @@ const CharacterForm = ({categories, initialData}: CharacterFormProps) => {
                                 />
                             </FormControl>
                             <FormDescription>
-                                Describe in detail your character's backstory and relevant details.
+                                Describe in detail your character@apos;s backstory and relevant details.
                             </FormDescription>
                             <FormMessage/>
                         </FormItem>
