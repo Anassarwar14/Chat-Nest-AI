@@ -40,6 +40,7 @@ const ChatHeader = ({ character }: ChatHeaderProps) => {
                 variant: "destructive",
                 description: "Something went wrong."
             }) 
+            console.log(error);
         }
     }
 

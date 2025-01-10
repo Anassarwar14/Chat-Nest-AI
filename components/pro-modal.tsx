@@ -34,6 +34,7 @@ export const ProModal = () => {
                 variant: "destructive",
                 description: "Something went wrong."
             })
+            console.log(error);
         } finally {
             setLoading(false);
         }

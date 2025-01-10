@@ -4,7 +4,7 @@ import { WandSparkles } from "lucide-react";
 import { Button } from "./ui/button"
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { toast, useToast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
 
 interface subButtonProps{
@@ -29,6 +29,7 @@ export const SubscriptionButton = ({ isPro = false}: subButtonProps) => {
                 variant: "destructive",
                 description: "Something went wrong."
             })
+            console.log(error);
         } finally {
             setLoading(false);
         }
@@ -36,7 +37,7 @@ export const SubscriptionButton = ({ isPro = false}: subButtonProps) => {
 
 
   return (
-    <Button onClick={onClick} size="sm" variant={isPro ? "outline" : "default"} className={cn("", !isPro && "bg-gradient-to-r from-emerald-600 to-blue-600 hover:bg-gradient-to-r hover:to-primary text-white")}>
+    <Button disabled={loading} onClick={onClick} size="sm" variant={isPro ? "outline" : "default"} className={cn("", !isPro && "bg-gradient-to-r from-emerald-600 to-blue-600 hover:bg-gradient-to-r hover:to-primary text-white")}>
         {isPro ? "Manage Subscription" : "Upgrade to GrowNest Pro*"}
         {!isPro && <WandSparkles className="h-4 w-4 ml-2 fill-white"/>}
     </Button>

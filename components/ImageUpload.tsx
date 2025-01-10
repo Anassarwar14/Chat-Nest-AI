@@ -18,7 +18,7 @@ const ImageUpload = ({ value, onChange, disabled }: ImageUploadProps) => {
       setIsMounted(true);
     }, [])
     
-    if(!isMounted) return null;
+    if(!isMounted && disabled) return null;
     return (
         <div className="space-y-4 w-full flex flex-col items-center justify-center">
             <CldUploadButton

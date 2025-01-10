@@ -1,5 +1,5 @@
 import { Character } from '@prisma/client'
-import { Bone, Donut, Feather, MessageSquare } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from './ui/card';

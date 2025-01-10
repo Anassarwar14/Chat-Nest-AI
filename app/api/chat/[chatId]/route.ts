@@ -1,10 +1,8 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { ConsoleCallbackHandler } from "langchain/callbacks";
-import { Replicate } from "@langchain/community/llms/replicate";
 import { NextResponse } from "next/server";
-import { generateText, LangChainAdapter, streamText } from "ai"
+import { generateText, LangChainAdapter } from "ai"
 
-import { createOpenAI as createGroq, openai } from "@ai-sdk/openai";
+import { createOpenAI as createGroq} from "@ai-sdk/openai";
 
 
 import { MemoryManager } from "@/lib/memory";

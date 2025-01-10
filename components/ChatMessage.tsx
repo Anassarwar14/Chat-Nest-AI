@@ -3,7 +3,7 @@
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
-import { BeatLoader, CircleLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 import BotAvatar from "./BotAvatar";
 import UserAvatar from "./UserAvatar";
 import { Button } from "./ui/button";

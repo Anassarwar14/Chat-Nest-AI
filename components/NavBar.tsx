@@ -1,7 +1,7 @@
 "use client"
 
 import { UserButton } from '@clerk/nextjs'
-import { Crown, Dot, Sparkles } from 'lucide-react'
+import { Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import { PiTreeFill } from 'react-icons/pi'

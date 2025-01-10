@@ -1,6 +1,6 @@
 "use client"
 
-import { Character, Message } from "@prisma/client";
+import { Character } from "@prisma/client";
 import ChatMessage, { ChatMessageProps } from "./ChatMessage";
 import { useEffect, useRef, useState } from "react";
 

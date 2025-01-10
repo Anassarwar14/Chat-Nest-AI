@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import {
   ClerkProvider,
 } from '@clerk/nextjs'
@@ -9,17 +9,7 @@ import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 import { ProModal } from "@/components/pro-modal";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const inter = Inter({subsets: ["latin"]});
+const quickSand = Quicksand({subsets: ["latin"], weight: "500"} );
 
 export const metadata: Metadata = {
   title: "Chat Nest AI",
@@ -34,7 +24,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-      <body className={cn("bg-secondary/50", inter.className)}>
+      <body className={cn("bg-secondary/50", quickSand.className)}>
       <ThemeProvider
             attribute="class"
             defaultTheme="system"

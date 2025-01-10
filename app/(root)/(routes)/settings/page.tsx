@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator"
 import { checkSubscription } from "@/lib/subscription"
 import { SubscriptionButton } from "@/components/subscription-button"
-import { currentUser, auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import UserAvatar from "@/components/UserAvatar";
 import { ModeToggle } from "@/components/theme-toggle";
 
