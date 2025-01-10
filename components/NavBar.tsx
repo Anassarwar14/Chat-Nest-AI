@@ -24,7 +24,7 @@ const NavBar = ({ isPro }: NavBarProps) => {
         <main className='mx-auto max-w-7xl flex items-center justify-between h-full'>
             <MobileSidebar isPro={isPro}/>
             <Link href="/" className='mr-auto flex items-center gap-3'>
-                <PiTreeFill className=' w-7 h-7 md:w-9 md:h-9 text-emerald-500 ' />
+                <PiTreeFill className='w-7 h-7 md:w-9 md:h-9 text-emerald-500' />
                 <h1 className='hidden md:block text-xl md:text-2xl font-bold text-primary'><span className='p-[0.34rem] text-white dark:text-black dark:bg-white bg-black text-clip '>Chat</span><span className='ml-1'>Nest</span> AI</h1>
             </Link>
             <section className='max-w-80 flex items-center gap-5 p-3 text-sm'>

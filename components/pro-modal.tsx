@@ -53,9 +53,9 @@ export const ProModal = () => {
                 </DialogDescription>
             </DialogHeader>
             <Separator />
-            <img src="/avatar.png" className="w-52 h-52 mx-auto" alt="avatarimg" />
+            <img src="/avatar.jpg" className="w-52 h-52 rounded-lg mx-auto" alt="avatarimg" />
             <div className="flex justify-between">
-                <p className="text-2xl font-medium">
+                <p className="text-2xl font-medium font-serif">
                     $9<span className="text-sm font-normal">.99 / mo</span>
                 </p>
                 <Button disabled={loading} onClick={onSubscribe} variant="premium" >

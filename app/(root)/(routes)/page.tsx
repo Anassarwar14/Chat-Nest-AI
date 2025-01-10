@@ -38,7 +38,6 @@ const RootPage = async (props: RootPageProps) => {
       <SearchInput/>
       <Categories data={categories} />
       <Characters data={data} />
-
     </div>
   )
 }
