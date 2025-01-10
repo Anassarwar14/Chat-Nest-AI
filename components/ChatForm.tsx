@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent } from "react";
 import { ChatRequestOptions } from "ai";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { MessageSquareQuote, Quote, Send } from "lucide-react";
+import { Quote, Send } from "lucide-react";
 
 interface ChatFormProps {
     isLoading: boolean;

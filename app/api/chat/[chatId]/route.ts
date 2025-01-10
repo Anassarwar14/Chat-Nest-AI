@@ -87,7 +87,7 @@ export async function POST(request: Request, props: { params: Promise<{ chatId: 
                 DO NOT take line breaks/gaps in the response.
                 Avoid overly long or short answers. DONT USE more than 150 words.
                 Short answers are prefered mostly.
-                
+
                 ${character.instructions}
                     
                 Below are relevant details about ${character.name}'s past and the conversation you are in.
