@@ -27,7 +27,7 @@ export const Categories = ({data} : CategoriesProps) => {
     }
     
   return (
-    <div className="w-full overflow-x-auto space-x-3 flex p-1 max-sm:pb-4 animate-in slide-in-from-right-72 duration-700 delay-100">
+    <div className="w-full overflow-x-auto space-x-3 flex p-1 max-sm:pb-4 animate-in slide-in-from-right-72 duration-700 delay-150">
         <button onClick={() => onClick(undefined)} className={cn(`
             flex items-center text-center text-xs text-primary/80 md:text-[0.85rem] px-3 py-2
             rounded-full font-semibold bg-primary-foreground hover:border-opacity-60 hover:bg-emerald-400/50 transition border border-emerald-400 
@@ -40,11 +40,11 @@ export const Categories = ({data} : CategoriesProps) => {
             `
                 flex items-center text-center text-xs text-primary/80 md:text-[0.85rem] px-3 py-2
                 rounded-full font-semibold whitespace-nowrap bg-primary-foreground hover:border-opacity-60 hover:bg-emerald-400/50 transition border border-emerald-400 
-            `, categoryId === "trending" && "bg-emerald-500 text-white hover:bg-emerald-500"
+            `, categoryId === "trending" && "bg-emerald-500 text-white hover:bg-emerald-500  border-emerald-500"
             )}
         >
             <div className="flex gap-x-1 items-center justify-center pr-1">
-                {categoryId === "trending" ? <PiLightningFill className=""/>: <PiLightning className="" />} Trending
+                {categoryId === "trending" ? <PiLightningFill />: <PiLightning />} Trending
             </div>
       </button>
         {
@@ -52,7 +52,7 @@ export const Categories = ({data} : CategoriesProps) => {
                 <button onClick={() => onClick(category.id)} key={category.id} className={cn(`
                     flex items-center text-center text-xs text-primary/80 md:text-[0.85rem] px-3 py-2
                     rounded-full whitespace-nowrap font-semibold bg-primary-foreground hover:border-opacity-60 hover:bg-emerald-400/50 transition border border-emerald-400 
-                `, category.id === categoryId && 'bg-emerald-500 text-white hover:bg-emerald-500')}>
+                `, category.id === categoryId && 'bg-emerald-500 text-white hover:bg-emerald-500 border-emerald-500')}>
                     {category.name}
                 </button>
             ))

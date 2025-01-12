@@ -35,7 +35,7 @@ const ChatMessages = ({isLoading, messages = [], character}: ChatMessagesProps) 
     
 
     return (
-    <div className="flex-1 overflow-y-auto pr-4 py-2">
+    <div className="flex-1 overflow-y-auto p-4 pr-4 py-2">
         {character && character.welcomeMessage ?
           <ChatMessage 
             src={character.src} 

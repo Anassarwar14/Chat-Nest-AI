@@ -52,7 +52,7 @@ const ChatClient = ({ character }: ChatClientProps) => {
   }
 
   return (
-    <div className="flex flex-col h-full p-4">
+    <div className="flex flex-col h-full">
         <ChatHeader character={character}/>
         <ChatMessages isLoading={isLoading} character={character} messages={messages} />
         <ChatForm

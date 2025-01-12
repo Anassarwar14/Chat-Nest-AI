@@ -47,10 +47,10 @@ const ChatHeader = ({ character }: ChatHeaderProps) => {
 
 
   return (
-    <div className="flex w-full justify-between items-center border-b border-primary/10 pb-4 bg-transparent bg-opacity-20 backdrop-blur-xl">
+    <div className="flex w-full justify-between items-center border-b border-primary/10 p-4 pb-4">
         <div className="flex gap-x-2 items-center">
             <Button onClick={() => router.back()} size="icon" variant="ghost">
-                <ChevronLeft className="relative h-52 w-52"/>
+                <ChevronLeft />
             </Button>
             <BotAvatar src={character.src} />
             <div className="flex flex-col gap-y-1">

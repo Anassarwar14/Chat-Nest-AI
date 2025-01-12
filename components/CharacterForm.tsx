@@ -163,7 +163,7 @@ const CharacterForm = ({categories, initialData}: CharacterFormProps) => {
 
 
   return (
-    <div className='h-full p-4 space-x-2 max-w-6xl mx-auto animate-in slide-in-from-bottom-40 fade-in-5 delay-75 duration-700'>
+    <div className='h-full p-4 space-x-2 max-w-6xl mx-auto animate-in slide-in-from-bottom-40 fade-in-5 duration-700'>
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 pb-10'>
                 <div className='space-y-2 w-full'>
