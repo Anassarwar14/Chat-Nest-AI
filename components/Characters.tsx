@@ -28,16 +28,16 @@ const Characters = ({ data }: CharacterProps) => {
     }
 
   return (  
-    <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 pb-10 pt-2 md:pt-4'>
+    <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 pb-10 pt-2 md:pt-4 max-md:gap-y-6'>
         {data.map((item) => (
             <Card
                 key={item.id}
-                className='bg-primary/10 rounded-xl cursor-pointer hover:opacity-90 transition border-0 animate-in fade-in-25 slide-in-from-bottom-9 duration-700 delay-100'
+                className='bg-primary/10 rounded-xl cursor-pointer hover:opacity-90 max-md:shadow-xl transition border-0 animate-in fade-in-25 slide-in-from-bottom-9 duration-700 delay-100'
             >
                 <Link href={`/chat/${item.id}`} className='flex flex-col items-center justify-between h-full'>
-                    <CardHeader className="flex items-center px-2 py-4">
-                        <div className='relative w-[23vh] h-[23vh] xl:w-[27vh] xl:[27vh]'>
-                            <Image fill src={item.src} className=' max-w-full max-h-full rounded-xl object-cover' alt='character-img'/>
+                    <CardHeader className="flex items-center px-2 pt-[0.85rem] pb-4">
+                        <div className='relative max-w-full max-h-full w-[20vh] h-[20vh] sm:w-[23vh] sm:h-[23vh] xl:w-[27vh] xl:[27vh] '>
+                            <Image fill src={item.src} className='rounded-xl object-cover' alt='character-img'/>
                         </div>
                     </CardHeader>
                     <CardContent className='flex flex-col items-center justify-center text-center text-muted-foreground p-5 pt-0'>

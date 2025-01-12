@@ -31,7 +31,7 @@ export const Categories = ({data} : CategoriesProps) => {
         <button onClick={() => onClick(undefined)} className={cn(`
             flex items-center text-center text-xs text-primary/80 md:text-[0.85rem] px-3 py-2
             rounded-full font-semibold bg-primary-foreground hover:border-opacity-60 hover:bg-emerald-400/50 transition border border-emerald-400 
-        `, !categoryId && 'bg-emerald-500 text-white hover:bg-emerald-500')}>
+        `, !categoryId && 'bg-emerald-500 text-white hover:bg-emerald-500 border-emerald-500')}>
             Latest
         </button>
         <button
