@@ -37,7 +37,7 @@ const Characters = ({ data }: CharacterProps) => {
                 <Link href={`/chat/${item.id}`} className='flex flex-col items-center justify-between h-full'>
                     <CardHeader className="flex items-center px-1 py-4">
                         <div className='relative w-[23vh] h-[23vh] xl:w-[27vh] xl:[27vh]'>
-                            <Image fill src={item.src} className='rounded-xl object-cover' alt='character-img'/>
+                            <Image fill src={item.src} className=' max-w-full max-h-full rounded-xl object-cover' alt='character-img'/>
                         </div>
                     </CardHeader>
                     <CardContent className='flex flex-col items-center justify-center text-center text-muted-foreground p-5 pt-0'>
