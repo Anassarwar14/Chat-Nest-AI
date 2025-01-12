@@ -4,20 +4,23 @@
 
 Welcome to **Chat Nest AI**, a cutting-edge platform for creating and interacting with custom AI characters. Built with Next.js, Prisma, and Clerk, this app allows you to craft unique AI personalities and engage in meaningful conversations.
 
+https://chat-nest-ai.vercel.app/
+
 ## 🚀 Features
 
 - **Custom AI Characters**: Create and personalize AI characters with unique backstories, welcome messages, and ice breakers.
 - **Real-time Chat**: Engage in real-time conversations with your AI characters.
-- **Subscription Management**: Upgrade to Pro for advanced features and manage your subscription seamlessly.
+- **Subscription Management**: Upgrade to Pro for advanced features and manage your subscription.
 - **Responsive Design**: Enjoy a sleek and modern UI that works across all devices.
 
 ## 🛠️ Tech Stack
 
 - **Frontend**: Next.js, React, Tailwind CSS
 - **Backend**: Node.js, Prisma, PostgreSQL
+- **Database**: Postgres (Supabase), ORM - Prisma 
 - **Authentication**: Clerk
 - **Payments**: Stripe
-- **AI Integration**: OpenAI, LangChain, Pinecone
+- **AI Integration**: Groq, LLAMA 3.1, LangChain, Pinecone, Redis
 
 ## 📸 Screenshots
 
@@ -76,21 +79,12 @@ Follow these steps to get the project up and running on your local machine:
 6. **Open your browser**:
     Navigate to [http://localhost:3000](http://localhost:3000) to see the app in action.
 
-## 📄 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read the CONTRIBUTING guidelines first.
-
 ## 📧 Contact
 
 Have questions or feedback? Feel free to reach out:
 
-- **Email**: your-email@example.com
-- **Twitter**: [@your-twitter-handle](https://twitter.com/your-twitter-handle)
+- **Email**: anassarwar14@gmail.com
+- **Linkedin**: https://www.linkedin.com/in/anassarwar14/
 
 ---
-
-Made with ❤️ by [Your Name](https://your-website.com)
+Made with ❤️ by Anas 
