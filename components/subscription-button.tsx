@@ -19,10 +19,10 @@ export const SubscriptionButton = ({ isPro = false}: subButtonProps) => {
     const onClick = async () => {
         try {
             setLoading(true);
-            const response = await axios.get("/api/stripe");
             toast({
                 description: "Redirecting to stripe..."
             })
+            const response = await axios.get("/api/stripe");
             window.location.href = response.data.url;
         } catch (error) {
             toast({

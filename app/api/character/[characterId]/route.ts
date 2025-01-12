@@ -8,7 +8,7 @@ export async function PATCH(req: Request, props: { params: Promise<{ characterId
     try {
         const body = await req.json();
         const user = await currentUser();
-        const { src, name, description, instructions, seed, categoryId } = body;
+        const { src, name, description, instructions, seed, categoryId, welcomeMessage, iceBreakers } = body;
 
         if(!params.characterId){
             return new NextResponse("Character ID is required", {status: 400})
@@ -41,6 +41,8 @@ export async function PATCH(req: Request, props: { params: Promise<{ characterId
                 description,
                 instructions,
                 seed,
+                welcomeMessage,
+                iceBreakers,
             }
         });
 

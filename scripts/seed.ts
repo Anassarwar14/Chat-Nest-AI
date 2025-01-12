@@ -8,10 +8,15 @@ async function main() {
             data: [
                 {name: "Famous"},
                 {name: "Movies & TV"},
-                {name: "Musicians"},
+                {name: "Anime"},
                 {name: "Games"},
                 {name: "Philosophy"},
                 {name: "Scientists"},
+                {name: "History"},
+                {name: "Horror"},
+                {name: "Books"},
+                {name: "Comedy"},
+                {name: "Musicians"},
             ]
         })
     } catch (error) {

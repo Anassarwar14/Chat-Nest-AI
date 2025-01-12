@@ -22,16 +22,27 @@ const ImageUpload = ({ value, onChange, disabled }: ImageUploadProps) => {
     return (
         <div className="space-y-4 w-full flex flex-col items-center justify-center">
             <CldUploadButton
-                onSuccess={(result: any) => onChange(result.info.secure_url)} 
+                onSuccess={(result: any) => onChange(result.info.secure_url)}
                 options={{
                     maxFiles: 1
                 }}
                 uploadPreset="Chat Nest AI"
             >
-                <div className="h-40 md:h-60 md:w-60 w-40 border border-zinc-600 border-dashed border-primary/10 rounded-lg hover:opacity-75 transition flex flex-col space-y-2 items-center justify-center">
-                    <div className={cn("relative h-full w-full", !value && 'h-20 w-20')}>
-                        <Image fill alt="Upload" src={value || "/photo (1).png"} className="rounded-lg object-cover"/>
-                    </div>
+                <div className="relative h-40 md:h-60 md:w-60 w-40 border border-dashed border-primary/30 rounded-lg hover:opacity-75 transition flex flex-col space-y-2 items-center justify-center">
+                        {value ?
+                            <Image
+                                fill
+                                alt="Upload"
+                                src={value}
+                                className="rounded-lg object-cover"
+                            /> :
+                            <Image
+                                fill
+                                alt="Upload"
+                                src={"/photo (1).png"}
+                                className="rounded-lg p-10 md:p-20 max-sm:p-12"
+                            />
+                        }
                 </div>
             </CldUploadButton>
         </div>

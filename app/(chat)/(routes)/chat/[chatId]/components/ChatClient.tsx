@@ -22,12 +22,10 @@ interface ChatClientProps {
 const ChatClient = ({ character }: ChatClientProps) => {
   const router = useRouter();
   const [messages, setMessages] = useState<ChatMessageProps[]>(character.messages)
+  const [firstInteraction, setFirstInteraction] = useState(character.messages.length === 0 ? true : false);
 
   const { input, isLoading, handleInputChange, handleSubmit, setInput } = useCompletion({
     api: `/api/chat/${character.id}`,
-    onResponse: (response) => {
-      console.log("C2", response); // Inspect the response
-    },  
     onFinish(prompt, completion){
       console.log("onFinishContent: ", completion);
       const systemMessage: ChatMessageProps = {
@@ -49,17 +47,20 @@ const ChatClient = ({ character }: ChatClientProps) => {
     };
 
     setMessages((current) => [...current, userMessage]);    
-
+    if(firstInteraction) setFirstInteraction(false);
     handleSubmit(e);
   }
 
   return (
-    <div className="flex flex-col h-full p-4 space-y-2">
+    <div className="flex flex-col h-full p-4">
         <ChatHeader character={character}/>
         <ChatMessages isLoading={isLoading} character={character} messages={messages} />
         <ChatForm
+          firstInteraction={firstInteraction}
+          iceBreakers={character.iceBreakers || []}
           isLoading={isLoading}
           input={input}
+          setInput={setInput}
           handleInputChange={handleInputChange}
           onSubmit={onSubmit}
         />

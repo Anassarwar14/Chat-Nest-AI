@@ -9,6 +9,7 @@ import { useUser } from "@clerk/nextjs";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
+import { ModeToggle } from "./theme-toggle";
 
 
 interface ChatHeaderProps {
@@ -46,7 +47,7 @@ const ChatHeader = ({ character }: ChatHeaderProps) => {
 
 
   return (
-    <div className="flex w-full justify-between items-center border-b border-primary/10 pb-4">
+    <div className="flex w-full justify-between items-center border-b border-primary/10 pb-4 bg-transparent bg-opacity-20 backdrop-blur-xl">
         <div className="flex gap-x-2 items-center">
             <Button onClick={() => router.back()} size="icon" variant="ghost">
                 <ChevronLeft className="relative h-52 w-52"/>
@@ -67,25 +68,28 @@ const ChatHeader = ({ character }: ChatHeaderProps) => {
                 </p>
             </div>
         </div>
-        {user?.id === character.userId && (
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                        <MoreVertical/>
-                    </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={() => router.push(`/character/${character.id}`)}>
-                        <Edit className="w-4 h-4 mr-2"/>
-                        Edit
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={onDelete}>
-                        <Trash className="w-4 h-4 mr-2"/>
-                        Delete
-                    </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-        )}
+        <div className="flex items-center gap-x-2">
+            <ModeToggle/>
+            {user?.id === character.userId && (
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon">
+                            <MoreVertical/>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => router.push(`/character/${character.id}`)}>
+                            <Edit className="w-4 h-4 mr-2"/>
+                            Edit
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={onDelete}>
+                            <Trash className="w-4 h-4 mr-2"/>
+                            Delete
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            )}
+        </div>
     </div>
   )
 }

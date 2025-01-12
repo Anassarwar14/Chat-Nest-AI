@@ -13,8 +13,9 @@ import { Input } from './ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
-import { Wand2 } from 'lucide-react';
+import { Plus, Trash2, Wand2, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 
 
@@ -63,40 +64,91 @@ const formSchema = z.object({
     categoryId: z.string().min(1, {
         message: "Category is required!"
     }),
+    welcomeMessage: z.string().min(8, {
+        message: "Welcome message must be at least 8 characters!"
+    }).optional().or(z.literal('')),
+    iceBreakers: z.array(
+        z.string().min(4, {
+            message: "Ice breaker must be at least 4 characters!"
+        })
+    ).optional().refine((data) => {
+        if (!data) return true;
+        return data.every(item => item.length >= 4);
+    }, {
+        message: "All ice breakers must be at least 4 characters!"
+    }),
 })
 
 const CharacterForm = ({categories, initialData}: CharacterFormProps) => {
     
     const router = useRouter()
     const { toast } = useToast();
+    const [iceBreakers, setIceBreakers] = useState<string[]>(initialData?.iceBreakers || []);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: initialData || {
+        defaultValues: initialData ? { 
+                ...initialData, 
+                welcomeMessage: initialData.welcomeMessage ?? "",
+                iceBreakers: initialData.iceBreakers || [] 
+            } : {
             name: "",
             description: "",
             instructions: "",
             seed: "",
             src: "",
             categoryId: undefined,
+            welcomeMessage: "",
+            iceBreakers: [],      
         }
     });
 
     const isLoading = form.formState.isSubmitting;
 
+    const addIceBreaker = () => {
+        setIceBreakers([...iceBreakers, ""]);
+        form.setValue('iceBreakers', [...iceBreakers, ""]);
+    };
+
+    const removeIceBreaker = (index: number) => {
+        const newIceBreakers = iceBreakers.filter((_, i) => i !== index);
+        setIceBreakers(newIceBreakers);
+        form.setValue('iceBreakers', newIceBreakers);
+    };
+
+    const updateIceBreaker = (index: number, value: string) => {
+        const newIceBreakers = [...iceBreakers];
+        newIceBreakers[index] = value;
+        setIceBreakers(newIceBreakers);
+        form.setValue('iceBreakers', newIceBreakers);
+    };
+
+    const clearWelcomeMessage = () => {
+        form.setValue('welcomeMessage', '');
+        form.trigger('welcomeMessage');
+    };
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
+            const cleanedValues = {
+                ...values,
+                iceBreakers: values.iceBreakers?.filter(breaker => breaker.length >= 4) || [],
+                welcomeMessage: values.welcomeMessage === '' ? null : values.welcomeMessage?.trim()
+            };
+
+            toast({
+                description: "Crafting..."
+            })   
             if(initialData){
-                await axios.patch(`/api/character/${initialData.id}`, values);
+                await axios.patch(`/api/character/${initialData.id}`, cleanedValues);
             }
             else {
-                await axios.post("/api/character", values);
+                await axios.post("/api/character", cleanedValues);
             }
             toast({
                 variant: "success",
                 description: "Success."
-            })
+            })       
 
             router.refresh();
             router.push('/');
@@ -111,7 +163,7 @@ const CharacterForm = ({categories, initialData}: CharacterFormProps) => {
 
 
   return (
-    <div className='h-full p-4 space-x-2 max-w-6xl mx-auto'>
+    <div className='h-full p-4 space-x-2 max-w-6xl mx-auto animate-in slide-in-from-bottom-40 fade-in-5 delay-75 duration-700'>
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 pb-10'>
                 <div className='space-y-2 w-full'>
@@ -127,7 +179,7 @@ const CharacterForm = ({categories, initialData}: CharacterFormProps) => {
                     <FormField 
                         name="src"
                         render={({ field }) => (
-                            <FormItem className='flex flex-col items-center justify-center space-y-4 p-5 rounded-t-3xl shadow-2xl bg-gradient-to-t from-emerald-500/70 to-emerald-100/70'>
+                            <FormItem className='flex flex-col items-center justify-center space-y-4 p-5 rounded-t-3xl shadow-2xl bg-gradient-to-t from-green-400/70 to-sky-100'>
                                 <FormControl>
                                     <ImageUpload disabled={isLoading} value={field.value} onChange={field.onChange} />
                                 </FormControl>
@@ -197,7 +249,7 @@ const CharacterForm = ({categories, initialData}: CharacterFormProps) => {
                                             />
                                         </SelectTrigger>
                                     </FormControl>
-                                    <SelectContent>
+                                    <SelectContent className='overflow-y-scroll max-h-44'>
                                         {categories.map((category) => (
                                             <SelectItem key={category.id} value={category.id}>
                                                 {category.name}
@@ -211,6 +263,104 @@ const CharacterForm = ({categories, initialData}: CharacterFormProps) => {
                         )}
                     />
                 </div>
+
+                <div className='space-y-2 w-full'>
+                    <div>
+                        <h3 className='font-medium text-lg'>
+                            Personality Settings <span className="text-muted-foreground text-xs ml-1 font-light">(Optional)</span>
+                        </h3>
+                        <p className='text-sm text-muted-foreground'>
+                            Configure how your character greets and engages with users
+                        </p>
+                    </div>
+                    <Separator className='bg-primary/10'/>
+                </div>
+                <FormField
+                    name='welcomeMessage'
+                    control={form.control}
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>Welcome Message</FormLabel>
+                            <div className="flex items-center gap-2">
+                                <FormControl>
+                                    <Input 
+                                        className='bg-background'
+                                        disabled={isLoading}
+                                        placeholder="Hey there! Ready to chat about rockets and electric cars?"
+                                        {...field}
+                                    />
+                                </FormControl>
+                                {field.value && (
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="icon"
+                                        onClick={clearWelcomeMessage}
+                                        className="shrink-0"
+                                        disabled={isLoading}
+                                    >
+                                        <X className="h-4 w-4" />
+                                    </Button>
+                                )}
+                            </div>
+                            <FormDescription>
+                                The first message your character will send when starting a conversation
+                            </FormDescription>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    name="iceBreakers"
+                    control={form.control}
+                    render={({ field, fieldState }) => (
+                        <FormItem className='space-y-4'>
+                            <div className='space-y-4'>
+                                <div className='flex items-center justify-between'>
+                                    <div>
+                                        <FormLabel>Ice Breakers</FormLabel>
+                                    </div>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={addIceBreaker}
+                                        className='flex items-center gap-2'
+                                    >
+                                        <Plus className='w-4 h-4' />
+                                        Add Ice Breaker
+                                    </Button>
+                                </div>
+                                <FormDescription>
+                                    Suggested conversation starters that users can click to begin the chat
+                                </FormDescription>
+                                <div className='space-y-4'>
+                                    {iceBreakers.map((iceBreaker, index) => (
+                                        <div key={index} className='flex items-center gap-2'>
+                                            <Input
+                                                className='bg-background flex-1'
+                                                value={iceBreaker}
+                                                onChange={(e) => updateIceBreaker(index, e.target.value)}
+                                                placeholder="What inspired you to start Tesla?"
+                                                disabled={isLoading}
+                                            />
+                                            <Button
+                                                type="button"
+                                                variant="destructive"
+                                                size="icon"
+                                                onClick={() => removeIceBreaker(index)}
+                                                disabled={isLoading}
+                                            >
+                                                <Trash2 className='w-4 h-4' />
+                                            </Button>
+                                        </div>
+                                    ))}
+                                    <FormMessage/>
+                                </div>
+                            </div>
+                        </FormItem>
+                        )}
+                />
                 <div className='w-full space-y-2'>
                     <div>
                         <h3 className='text-lg font-medium'>
@@ -238,7 +388,7 @@ const CharacterForm = ({categories, initialData}: CharacterFormProps) => {
                                 />
                             </FormControl>
                             <FormDescription>
-                                Describe in detail your character@apos;s backstory and relevant details.
+                                Describe in detail your character's backstory and relevant details.
                             </FormDescription>
                             <FormMessage/>
                         </FormItem>

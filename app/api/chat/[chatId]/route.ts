@@ -91,6 +91,7 @@ export async function POST(request: Request, props: { params: Promise<{ chatId: 
                 Below are relevant details about ${character.name}'s past and the conversation you are in.
                 ${relevantHistory}
                 
+                ${character.welcomeMessage}
                 ${recentChatHistory}\n${character.name};
             `,
         })

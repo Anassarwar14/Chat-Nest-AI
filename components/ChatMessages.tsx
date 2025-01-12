@@ -35,13 +35,22 @@ const ChatMessages = ({isLoading, messages = [], character}: ChatMessagesProps) 
     
 
     return (
-    <div className="flex-1 overflow-y-auto pr-4">
-        <ChatMessage 
+    <div className="flex-1 overflow-y-auto pr-4 py-2">
+        {character && character.welcomeMessage ?
+          <ChatMessage 
+            src={character.src} 
+            isLoading={fakeLoading} 
+            role="system"
+            content={`${character.welcomeMessage}`} 
+          /> :
+          <ChatMessage 
             src={character.src} 
             isLoading={fakeLoading} 
             role="system"
             content={`Hello, I am ${character.name}, ${character.description}`} 
-        />
+          />
+        }
+          
         {messages.map((message, index) => (
             <ChatMessage
                 key={message.content + "" + index} 
@@ -50,6 +59,7 @@ const ChatMessages = ({isLoading, messages = [], character}: ChatMessagesProps) 
                 src={character.src}
             />
         ))}
+
         {isLoading && (
             <ChatMessage
                 role="system"

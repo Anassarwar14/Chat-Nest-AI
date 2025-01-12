@@ -40,7 +40,7 @@ export const SearchInput = () => {
     return (
         <div className='relative'>
             <Search className="absolute h-4 w-4 top-3 left-4 text-muted-foreground "/>
-            <Input value={value} onChange={onChange} className="pl-10 bg-primary-foreground hover:bg-primary/10 focus-visible:ring-0  focus:border focus:border-emerald-500" placeholder="Search..."
+            <Input value={value} onChange={onChange} className="pl-10 bg-primary-foreground hover:bg-primary/10 focus-visible:ring-0 focus:border focus:border-emerald-500 rounded-lg" placeholder="Search..."
              />
         </div>
     )

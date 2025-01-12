@@ -25,7 +25,9 @@ export const ProModal = () => {
     const onSubscribe = async () => {
         try {
             setLoading(true);
-            
+            toast({
+                description: "Redirecting to stripe..."
+            })
             const response = await axios.get("/api/stripe");
             window.location.href = response.data.url;
 
@@ -54,6 +56,7 @@ export const ProModal = () => {
             </DialogHeader>
             <Separator />
             <img src="/avatar.jpg" className="w-52 h-52 rounded-lg mx-auto" alt="avatarimg" />
+            <Separator />
             <div className="flex justify-between">
                 <p className="text-2xl font-medium font-serif">
                     $9<span className="text-sm font-normal">.99 / mo</span>

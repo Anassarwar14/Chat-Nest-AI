@@ -24,6 +24,8 @@ model Character {
   description  String
   instructions String
   seed         String
+  iceBreakers    String[]  
+  welcomeMessage String?    
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   categoryId   String

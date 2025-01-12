@@ -28,7 +28,14 @@ const NavBar = ({ isPro }: NavBarProps) => {
                 <h1 className='hidden md:block text-xl md:text-2xl font-bold text-primary'><span className='p-[0.34rem] text-white dark:text-black dark:bg-white bg-black text-clip '>Chat</span><span className='ml-1'>Nest</span> AI</h1>
             </Link>
             <section className='max-w-80 flex items-center gap-5 p-3 text-sm'>
-                {isPro ? <Image width={50} height={50}  className="-translate-y-[0.15rem] translate-x-2" src="/member.svg"  alt='crown img'/>: <Button onClick={proModal.onOpen} variant="premium" size="sm">Upgrade<Sparkles className='fill-white text-white'/></Button>}
+                {isPro ? 
+                  <div className='group relative'>
+                    <Image width={50} height={50}  className="-translate-y-[0.15rem] translate-x-2" src="/member.svg"  alt='crown img'/>
+                    <div className="whitespace-nowrap absolute left-1/2 -translate-x-1/2 top-full px-3 py-1 text-xs text-white bg-emerald-400 rounded-lg opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all shadow-md">
+                      • Pro Member
+                    </div>
+                  </div>
+                  : <Button onClick={proModal.onOpen} variant="premium" size="sm">Upgrade<Sparkles className='fill-white text-white'/></Button>}
                 <div><ModeToggle/></div>
                 <UserButton/>
             </section>

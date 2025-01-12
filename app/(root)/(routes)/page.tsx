@@ -14,14 +14,20 @@ interface RootPageProps {
 const RootPage = async (props: RootPageProps) => {
   const searchParams = await props.searchParams;
   const categories = await prismadb.category.findMany();
+  const isTrending = searchParams.categoryId === "trending";
+
   const data = await prismadb.character.findMany({
-    where: {
+    where: isTrending ? undefined : {
       categoryId: searchParams.categoryId,
       name: {
         search: searchParams.name 
       }
     },
-    orderBy: {
+    orderBy: isTrending ? {
+      messages: {
+        _count: "desc",
+      },
+    } : {
       createdAt: "desc"
     },
     include: {
