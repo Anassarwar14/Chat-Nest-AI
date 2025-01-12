@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chat Nest AI
 
-## Getting Started
+![Chat Nest AI](https://your-image-url.com/banner.png)
 
-First, run the development server:
+Welcome to **Chat Nest AI**, a cutting-edge platform for creating and interacting with custom AI characters. Built with Next.js, Prisma, and Clerk, this app allows you to craft unique AI personalities and engage in meaningful conversations.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+https://chat-nest-ai.vercel.app/
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Custom AI Characters**: Create and personalize AI characters with unique backstories, welcome messages, and ice breakers.
+- **Real-time Chat**: Engage in real-time conversations with your AI characters.
+- **Subscription Management**: Upgrade to Pro for advanced features and manage your subscription.
+- **Responsive Design**: Enjoy a sleek and modern UI that works across all devices.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+- **Frontend**: Next.js, React, Tailwind CSS
+- **Backend**: Node.js, Prisma, PostgreSQL
+- **Database**: Postgres (Supabase), ORM - Prisma 
+- **Authentication**: Clerk
+- **Payments**: Stripe
+- **AI Integration**: Groq, LLAMA 3.1, LangChain, Pinecone, Redis
 
-To learn more about Next.js, take a look at the following resources:
+## 📸 Screenshots
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Screenshot 1](https://your-image-url.com/screenshot1.png)
+![Screenshot 2](https://your-image-url.com/screenshot2.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📚 Getting Started
 
-## Deploy on Vercel
+Follow these steps to get the project up and running on your local machine:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Node.js
+- npm or yarn
+- PostgreSQL
+
+### Installation
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/your-username/chat-nest-ai.git
+    cd chat-nest-ai
+    ```
+
+2. **Install dependencies**:
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+3. **Set up environment variables**:
+    Create a [.env](http://_vscodecontentref_/0) file in the root directory and add your environment variables:
+    ```env
+    DATABASE_URL=your-database-url
+    STRIPE_API_KEY=your-stripe-api-key
+    STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
+    NEXT_PUBLIC_APP_URL=your-app-url
+    CLERK_API_KEY=your-clerk-api-key
+    PINECONE_API_KEY=your-pinecone-api-key
+    COHERE_API_KEY=your-cohere-api-key
+    ```
+
+4. **Run database migrations**:
+    ```bash
+    npx prisma migrate dev --name init
+    ```
+
+5. **Start the development server**:
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
+
+6. **Open your browser**:
+    Navigate to [http://localhost:3000](http://localhost:3000) to see the app in action.
+
+## 📧 Contact
+
+Have questions or feedback? Feel free to reach out:
+
+- **Email**: anassarwar14@gmail.com
+- **Linkedin**: https://www.linkedin.com/in/anassarwar14/
+
+---
+Made with ❤️ by Anas 
