@@ -45,9 +45,6 @@ export async function POST(request: Request, props: { params: Promise<{ chatId: 
             return new NextResponse("Character not found", { status: 404 });
         }
 
-        const name = character.id;
-        const character_file_name = name + ".txt";
-
         const characterKey = {
             characterName: character.name,
             modelName: "llama-3.1-70b-versatile",
@@ -65,11 +62,13 @@ export async function POST(request: Request, props: { params: Promise<{ chatId: 
 
         const recentChatHistory = await memoryManager.readLatestHistory(characterKey);
 
-        const similarDocs = await memoryManager.vectorSearch(recentChatHistory, character_file_name);
+        const similarDocs = await memoryManager.vectorSearch(recentChatHistory, character.name);
 
         let relevantHistory = "";
         if(!!similarDocs && similarDocs.length !== 0) {
             relevantHistory = similarDocs.map((doc) => doc.pageContent).join("\n");
+            console.log(similarDocs);
+            console.log(relevantHistory);
         }        
     
         const groq = createGroq({

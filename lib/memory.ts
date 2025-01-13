@@ -24,8 +24,8 @@ export class MemoryManager {
         const pineconeIndex = pineconeClient.Index(process.env.PINECONE_INDEX!);
 
         const vectorStore = await PineconeStore.fromExistingIndex(
-            new CohereEmbeddings({apiKey: process.env.COHERE_API_KEY!, model: "embed-english-v3.0"}),
-            { pineconeIndex }
+            new CohereEmbeddings({apiKey: process.env.COHERE_API_KEY!, model: "embed-multilingual-v3.0"}),
+            { pineconeIndex, textKey: "pageContent" }
         );
 
         const similarDocs = await vectorStore
@@ -59,6 +59,18 @@ export class MemoryManager {
             score: Date.now(),
             member: text,
         });
+
+        const model = new CohereEmbeddings({ apiKey: process.env.COHERE_API_KEY!, model: "embed-multilingual-v3.0" });
+        const vector = await model.embedQuery(text);
+        
+        const pineconeIndex = this.vectorDBClient.Index(process.env.PINECONE_INDEX!);
+        await pineconeIndex.upsert([
+            {
+                id: key + '-' + Date.now(),
+                values: vector,
+                metadata: { fileName: characterKey.characterName, pageContent: text },
+            }
+        ]);
 
         return result;
     }

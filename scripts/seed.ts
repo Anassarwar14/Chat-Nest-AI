@@ -17,6 +17,8 @@ async function main() {
                 {name: "Books"},
                 {name: "Comedy"},
                 {name: "Musicians"},
+                {name: "Beauty"},
+                {name: "Fantasy"},
             ]
         })
     } catch (error) {

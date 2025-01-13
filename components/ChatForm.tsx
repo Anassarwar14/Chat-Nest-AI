@@ -50,7 +50,7 @@ const ChatForm = ({
                 placeholder="Type a message.."
                 className="bg-secondary rounded-3xl max-md:py-5 focus-visible:ring-0 focus:border focus:border-emerald-500 transition ease-in"
             />
-            <Button disabled={isLoading} className="rounded-full text-white bg-gradient-to-r from-emerald-500 to-emerald-300/80">
+            <Button disabled={isLoading || !input} className="rounded-full text-white bg-gradient-to-r from-emerald-500 to-emerald-300/80">
                 {!isLoading ? <Send /> : <Quote/>}
             </Button>
         </div>
