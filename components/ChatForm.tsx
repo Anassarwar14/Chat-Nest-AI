@@ -34,7 +34,7 @@ const ChatForm = ({
                     <GiMeltingIceCube className="w-6 h-6 flex-shrink-0"/>
                     <div className="flex flex-wrap gap-2 px-2">
                         { iceBreakers.map((item, index) => (
-                            <Button onClick={(e) => setInput(item)} key={index} variant="outline" disabled={isLoading} className="rounded-full whitespace-break-spaces break-all border-t max-sm:text-xs md:hover:scale-105 transition-colors duration-200 shadow-sm">
+                            <Button onClick={(e) => setInput(item)} key={index} variant="outline" disabled={isLoading} className="rounded-full break-words border-t max-sm:text-xs md:hover:scale-105 transition-colors duration-200 shadow-sm">
                                 {item}
                             </Button>
                         ))}
