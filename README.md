@@ -16,11 +16,11 @@ https://chat-nest-ai.vercel.app/
 ## 🛠️ Tech Stack
 
 - **Frontend**: Next.js, React, Tailwind CSS
-- **Backend**: Node.js, Prisma, PostgreSQL
+- **Backend**: Next.js, Prisma, PostgreSQL
 - **Database**: Postgres (Supabase), ORM - Prisma 
 - **Authentication**: Clerk
 - **Payments**: Stripe
-- **AI Integration**: Groq, LLAMA 3.1, LangChain, Pinecone, Redis
+- **AI Integration**: Groq, LLAMA 3.3-versatile-70B, LangChain, Pinecone, Redis, Cohere
 
 ## 📸 Screenshots
 
@@ -33,7 +33,7 @@ Follow these steps to get the project up and running on your local machine:
 
 ### Prerequisites
 
-- Node.js
+- Next.js
 - npm or yarn
 - PostgreSQL
 
@@ -41,7 +41,7 @@ Follow these steps to get the project up and running on your local machine:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/chat-nest-ai.git
+    git clone https://github.com/Anassarwar14/chat-nest-ai.git
     cd chat-nest-ai
     ```
 
@@ -59,9 +59,15 @@ Follow these steps to get the project up and running on your local machine:
     STRIPE_API_KEY=your-stripe-api-key
     STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
     NEXT_PUBLIC_APP_URL=your-app-url
-    CLERK_API_KEY=your-clerk-api-key
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your-cloudinary-name
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
+    CLERK_SECRET_KEY=your-clerk-api-key
     PINECONE_API_KEY=your-pinecone-api-key
+    PINECONE_INDEX=your-pinecone-api-index
     COHERE_API_KEY=your-cohere-api-key
+    UPSTASH_REDIS_REST_URL=your-upstash-redis-resturl
+    UPSTASH_REDIS_REST_URL=your-upstash-redis-token
+    GROQ_API_KEY=your-groq-api-key
     ```
 
 4. **Run database migrations**:
