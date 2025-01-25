@@ -28,7 +28,7 @@ https://chat-nest-ai.vercel.app/
 ![image](https://github.com/user-attachments/assets/807bb3fc-a01a-4174-bca4-70f5df7febcc)
 
 
-## 📚 Getting Started
+## ➤ Getting Started
 
 Follow these steps to get the project up and running on your local machine:
 
@@ -90,8 +90,9 @@ Have questions or feedback? Feel free to reach out:
 - **Email**: anassarwar14@gmail.com
 - **Linkedin**: https://www.linkedin.com/in/anassarwar14/
 
----
-Developed with passion for AI innovation ❤
-Special thanks to Groq Cloud, Llama, Pinecone, LangChain, and the creators of open-source tools and libraries that made this project possible 🌟
-Inspired by the vision to create unique and interactive AI-driven experiences.
-Made with ❤️ by Anas 
+## Acknowledgements
+- Developed with passion for AI innovation ❤
+- Special thanks to Groq Cloud, Llama, Pinecone, LangChain, and the creators of open-source tools and libraries that made this project possible.
+- Inspired by the vision to create unique and interactive AI-driven experiences.
+
+- Made with ❤️ by Anas 
