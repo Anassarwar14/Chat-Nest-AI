@@ -1,10 +1,10 @@
 # Chat Nest AI
 
-![Chat Nest AI](https://your-image-url.com/banner.png)
-
 Welcome to **Chat Nest AI**, a cutting-edge platform for creating and interacting with custom AI characters. Built with Next.js, Prisma, and Clerk, this app allows you to craft unique AI personalities and engage in meaningful conversations.
 
 https://chat-nest-ai.vercel.app/
+
+![image](https://github.com/user-attachments/assets/621d8108-6011-47cd-adcf-cca9500094cb)
 
 ## 🚀 Features
 
@@ -24,8 +24,9 @@ https://chat-nest-ai.vercel.app/
 
 ## 📸 Screenshots
 
-![Screenshot 1](https://your-image-url.com/screenshot1.png)
-![Screenshot 2](https://your-image-url.com/screenshot2.png)
+![image](https://github.com/user-attachments/assets/02929b5d-2718-4b03-851d-b2cf4bb118f3)
+![image](https://github.com/user-attachments/assets/807bb3fc-a01a-4174-bca4-70f5df7febcc)
+
 
 ## 📚 Getting Started
 
@@ -78,9 +79,6 @@ Follow these steps to get the project up and running on your local machine:
 5. **Start the development server**:
     ```bash
     npm run dev
-    # or
-    yarn dev
-    ```
 
 6. **Open your browser**:
     Navigate to [http://localhost:3000](http://localhost:3000) to see the app in action.
@@ -93,4 +91,7 @@ Have questions or feedback? Feel free to reach out:
 - **Linkedin**: https://www.linkedin.com/in/anassarwar14/
 
 ---
+Developed with passion for AI innovation ❤
+Special thanks to Groq Cloud, Llama, Pinecone, LangChain, and the creators of open-source tools and libraries that made this project possible 🌟
+Inspired by the vision to create unique and interactive AI-driven experiences.
 Made with ❤️ by Anas 
