@@ -47,7 +47,7 @@ export async function POST(request: Request, props: { params: Promise<{ chatId: 
 
         const characterKey = {
             characterName: character.name,
-            modelName: "llama-3.1-70b-versatile",
+            modelName: "llama-3.3-70b-versatile",
             userId: user.id, 
         } 
 
@@ -77,7 +77,7 @@ export async function POST(request: Request, props: { params: Promise<{ chatId: 
         })
 
         const { text } = await generateText({
-            model: groq('llama-3.1-70b-versatile'),
+            model: groq('llama-3.3-70b-versatile'),
             prompt: 
             `
                 ONLY generate plain sentences without prefix of who is speaking. DO NOT use ${character.name}: prefix.
